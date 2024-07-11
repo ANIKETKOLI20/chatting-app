@@ -22,13 +22,15 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+// Change the path here to point to 'build' instead of 'dist'
+app.use(express.static(path.join(__dirname, "/frontend/build")));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
 
 server.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server Running on port ${PORT}`);
 });
+
